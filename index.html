@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, My Love!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        :root {
+            --primary: #ff4d6d;
+            --secondary: #ff85a1;
+            --accent: #fbb1bd;
+            --bg: #fff0f3;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background: var(--bg);
+            scroll-behavior: smooth;
+        }
+
+        .font-romantic {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .font-serif-elegant {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(255, 77, 109, 0.1);
+        }
+
+        /* Floating Hearts Animation */
+        .heart-float {
+            position: absolute;
+            color: var(--primary);
+            animation: float 6s ease-in infinite;
+            pointer-events: none;
+            z-index: 5;
+            opacity: 0;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(0) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.6; }
+            100% { transform: translateY(-10vh) scale(1.5) rotate(360deg); opacity: 0; }
+        }
+
+        /* Hero Gradient Animation */
+        .animated-bg {
+            background: linear-gradient(-45deg, #fff0f3, #ffccd5, #ffb3c1, #fff0f3);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Sparkle Trail */
+        .sparkle {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--primary);
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s linear, opacity 0.5s ease-out;
+        }
+
+        /* Card Hover Effects */
+        .hover-lift {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .hover-lift:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--secondary);
+            border-radius: 10px;
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="text-gray-800 animated-bg">
+
+    <!-- Sparkle Trail Container -->
+    <div id="sparkle-container"></div>
+    
+    <!-- Floating Hearts Container -->
+    <div id="hearts-container" class="fixed inset-0 pointer-events-none z-0"></div>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex flex-col items-center justify-center text-center px-4 z-10">
+        <div class="space-y-6">
+            <div class="inline-block px-4 py-1 rounded-full bg-white/50 text-pink-600 font-semibold text-sm tracking-widest uppercase mb-4 animate-bounce">
+                Happy Birthday,Baby ✨
+            </div>
+            <h1 class="text-7xl md:text-9xl font-romantic text-pink-600 drop-shadow-sm">
+                For My Best Friend
+            </h1>
+            <p class="max-w-xl mx-auto text-xl md:text-2xl text-gray-700 font-serif-elegant italic leading-relaxed">
+                "You make every day feel like a celebration, but today is extra special because it's the day you were born."
+            </p>
+        </div>
+        
+        <div class="absolute bottom-12 animate-pulse cursor-pointer" onclick="scrollToSection('message')">
+            <span class="text-sm font-semibold uppercase tracking-widest text-pink-400 block mb-2">Scroll to discover</span>
+            <svg class="w-6 h-6 mx-auto text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        </div>
+    </section>
+
+    <!-- Message Reveal Section -->
+    <section id="message" class="py-32 relative z-10 px-4">
+        <div class="max-w-3xl mx-auto">
+            <div class="glass p-12 md:p-20 rounded-[2rem] shadow-2xl relative">
+                <div class="absolute -top-10 left-10 text-8xl opacity-10 font-serif-elegant select-none">"</div>
+                
+                <h2 class="text-4xl font-romantic text-pink-600 mb-10 border-b border-pink-100 pb-6">My Jiya</h2>
+                
+                <div class="text-gray-700 space-y-6 leading-relaxed text-lg md:text-xl font-serif-elegant italic">
+                    <p>Happiest birthday to you!!! It’s been more 2 years we are together.</p>
+                    
+                    <p>For me it was random call, didn’t even predicted how far it will go but here it is!!</p>
+                    
+                    <p>GOT A FRIEND LIKE YOU 😋<br>
+                    Ohh Sorry!!! BESTTTTTTTTT FRIENDDDDDDD 😵‍💫🤪🤪<br>
+                    No wait!!!!!! GIRLLLLL FRI….." Wait wait I missed the topic (We will talk about this later 💀🤪🤪)</p>
+                    
+                    <p>Let’s comeback to the topic.</p>
+                    
+                    <p>So you my gorgeous polar bear, some times you are as nagri as pandaa 😭😭,<br>
+                    Sometimes you become as angry as a cute laal naak wala bacha 🥰🥰,<br>
+                    Sometimes you become Rohit Sharma and forget me also 🥲🥲🥲.</p>
+                    
+                    <p>And last I don’t want to make you climb a “chane ka jhad”. But yeahh sometimes you look HOT AS FUCKKK Babby 🥵.</p>
+                    
+                    <p>Sometimes comes with a surprise package depending on your mood 😂. Overalll a Good package but handle with care 😚😚😚.</p>
+                    
+                    <p>So jesi ho wesi raho par meri raho sada ke liye (I hope 🙂‍↕️).</p>
+                    
+                    <p class="pt-4 text-pink-500 font-bold">Are nana abhi khatam nahi hua hai niche ja re scroll karo bohot kuch haiii 😉</p>
+                    
+                    <p>Tab tak iss section se bye bye 😁!!</p>
+                </div>
+                
+                <div class="mt-12 pt-10 border-t border-pink-100">
+                    <p class="font-romantic text-4xl text-pink-600">With all my love, <br>Taneesh</p>
+                </div>
+                
+                <div class="absolute -bottom-10 right-10 text-8xl opacity-10 font-serif-elegant select-none">"</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Reasons Section -->
+    <section class="py-24 z-10 relative px-4 bg-white/30 backdrop-blur-sm">
+        <div class="max-w-xl mx-auto text-center">
+            <h2 class="text-3xl font-romantic text-pink-600 mb-12">Reasons why I love you ....</h2>
+            <div class="flex justify-center">
+                <div id="reveal-card" onclick="revealReason(this)" class="min-h-[16rem] w-full glass flex flex-col items-center justify-center p-8 rounded-[3rem] cursor-pointer hover-lift group border-2 border-pink-100 transition-colors duration-500">
+                    <div id="before-reveal" class="flex flex-col items-center space-y-4">
+                        <div class="text-pink-400 text-7xl transform transition-transform duration-300 group-hover:scale-110 drop-shadow-md">❤️</div>
+                        <p class="text-xs uppercase tracking-[0.2em] text-pink-400 font-bold animate-pulse">Tap to reveal</p>
+                    </div>
+                    <div id="after-reveal" class="hidden font-serif-elegant italic text-pink-600 text-xl md:text-2xl animate-fade-in text-center space-y-4">
+                        <p>If there is a reason then it’s not love🥰</p>
+                        <p>And if needed then I don’t know 🙂</p>
+                        <p>May be your ……</p>
+                        <p class="text-3xl font-bold not-italic">You* 😜😜</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Gallery (Updated to Grid for Stability) -->
+    <section id="gallery" class="py-32 z-10 relative px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl font-romantic text-pink-600 mb-4">Our Beautiful Journey</h2>
+                <p class="text-gray-500 uppercase tracking-widest text-sm">Frozen moments in time</p>
+            </div>
+            
+            <!-- Standardized grid layout ensures it doesn't hinder other components -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="hover-lift glass p-3 rounded-[2rem] flex flex-col">
+                    <div class="aspect-square rounded-[1.5rem] overflow-hidden shadow-md">
+                        <img src="1.jpeg" alt="Memory" class="w-full h-full object-cover">
+                    </div>
+                    <p class="mt-4 px-4 pb-2 font-serif-elegant italic text-center">Where it all began...</p>
+                </div>
+                <div class="hover-lift glass p-3 rounded-[2rem] flex flex-col">
+                    <div class="aspect-square rounded-[1.5rem] overflow-hidden shadow-md">
+                        <img src="2.jpeg" alt="Memory" class="w-full h-full object-cover">
+                    </div>
+                    <p class="mt-4 px-4 pb-2 font-serif-elegant italic text-center">That golden hour with you.</p>
+                </div>
+                <div class="hover-lift glass p-3 rounded-[2rem] flex flex-col">
+                    <div class="aspect-square rounded-[1.5rem] overflow-hidden shadow-md">
+                        <img src="3.jpeg" alt="Memory" class="w-full h-full object-cover">
+                    </div>
+                    <p class="mt-4 px-4 pb-2 font-serif-elegant italic text-center">My favorite smile in the world.</p>
+                </div>
+                <div class="hover-lift glass p-3 rounded-[2rem] flex flex-col">
+                    <div class="aspect-square rounded-[1.5rem] overflow-hidden shadow-md">
+                        <img src="4.jpeg" alt="Memory" class="w-full h-full object-cover">
+                    </div>
+                    <p class="mt-4 px-4 pb-2 font-serif-elegant italic text-center">Adventures with my best friend.</p>
+                </div>
+                <div class="hover-lift glass p-3 rounded-[2rem] flex flex-col">
+                    <div class="aspect-square rounded-[1.5rem] overflow-hidden shadow-md">
+                        <img src="5.jpeg" alt="Memory" class="w-full h-full object-cover">
+                    </div>
+                    <p class="mt-4 px-4 pb-2 font-serif-elegant italic text-center">Simple moments, big love.</p>
+                </div>
+                <div class="hover-lift glass p-3 rounded-[2rem] flex flex-col">
+                    <div class="aspect-square rounded-[1.5rem] overflow-hidden shadow-md">
+                        <img src="6.jpeg" alt="Memory" class="w-full h-full object-cover">
+                    </div>
+                    <p class="mt-4 px-4 pb-2 font-serif-elegant italic text-center">To many more years like this.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-24 text-center z-10 relative px-4">
+        <h2 class="text-4xl md:text-5xl font-romantic text-pink-600 mb-8">Ready for your real gift?</h2>
+        <p class="text-gray-600 mb-10 max-w-md mx-auto italic">Come find me when you're done reading this... I'm waiting for you.</p>
+        
+        <div class="flex flex-col items-center gap-12">
+            <button onclick="scrollToSection('gift')" class="group relative px-10 py-5 bg-pink-500 text-white rounded-full overflow-hidden shadow-xl transition-all hover:shadow-pink-300/50 hover:scale-105 active:scale-95">
+                <span class="relative z-10 font-bold tracking-widest uppercase">Open Your Surprise</span>
+                <div class="absolute inset-0 bg-pink-600 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
+            </button>
+        </div>
+    </section>
+
+    <!-- The Magic Gift Box -->
+    <section id="gift" class="py-32 relative z-10 px-4 overflow-hidden">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="inline-block mb-12">
+                <h2 class="text-4xl md:text-5xl font-romantic text-pink-600 mb-2">The Birthday Box</h2>
+                <div class="h-1 w-24 bg-pink-400 mx-auto rounded-full"></div>
+            </div>
+            
+            <div id="gift-closed" class="cursor-pointer transition-all duration-500 hover:scale-110 active:scale-95" onclick="openGift()">
+                <div class="relative w-56 h-56 md:w-72 md:h-72 mx-auto bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl shadow-2xl flex items-center justify-center group">
+                    <div class="absolute w-10 h-full bg-pink-700/30 backdrop-blur-sm"></div>
+                    <div class="absolute h-10 w-full bg-pink-700/30 backdrop-blur-sm"></div>
+                    <div class="absolute -top-8 w-24 h-12 bg-pink-600 rounded-full flex items-center justify-center shadow-lg">
+                        <div class="w-4 h-4 bg-pink-400 rounded-full"></div>
+                    </div>
+                    <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity rounded-2xl"></div>
+                    <span class="text-white text-xl font-bold z-10 tracking-widest group-hover:scale-110 transition-transform">TAP TO OPEN</span>
+                </div>
+                <p class="mt-8 text-pink-400 font-medium italic animate-pulse">Wait until you see what's inside...</p>
+            </div>
+
+            <div id="gift-opened" class="hidden space-y-8">
+                <div class="glass p-10 md:p-16 rounded-[3rem] relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-transparent via-pink-400 to-transparent"></div>
+                    
+                    <h3 class="text-5xl md:text-6xl font-romantic text-pink-600 mb-6">I love you💌</h3>
+                    
+                    <div class="text-lg md:text-xl leading-relaxed text-gray-700 font-serif-elegant max-w-2xl mx-auto space-y-4">
+                        <p class="font-bold">I don’t how it happened but it happened. ♥️</p>
+                        <p>When we became friends I don’t we will become best friends but it happened. 🤩</p>
+                        <p>When in the start I was sure that I’ll not fall for you but I fell. 🍃</p>
+                        
+                        <div class="bg-pink-50/50 p-6 rounded-2xl border border-pink-100 italic">
+                            <p class="mb-2">When I said I love you I don’t know till when but,</p>
+                            <p class="text-2xl font-bold text-pink-600 mb-4">I will stop loving you 😭</p>
+                            
+                            <ul class="space-y-1 text-sm md:text-base text-gray-600">
+                                <li>When battery hits 101 🔋</li>
+                                <li>When it’s 25 hours a day ⏱️</li>
+                                <li>When fake flower dies 🪷</li>
+                                <li>When tom eats jerry 🐱</li>
+                                <li>When gulab jamun becomes bitter 🍭</li>
+                                <li>When panda becomes slim 🐼</li>
+                                <li>When it’s feb 30 🤭</li>
+                                <li>When penguin couple breakups 🐧</li>
+                            </ul>
+                        </div>
+                        
+                        <p class="pt-4 text-pink-500 font-semibold">If wanna hold me, hold me close enough so our hearts beat as one.💗</p>
+                    </div>
+
+                    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="mt-12 w-12 h-12 bg-pink-500/10 text-pink-600 rounded-full shadow-sm hover:bg-pink-100 transition-all flex items-center justify-center mx-auto">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 15l7-7 7 7"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-pink-600 text-white text-center z-10 relative">
+        <div class="max-w-4xl mx-auto px-4">
+            <p class="text-3xl font-romantic mb-4">now you can call me</p>
+            <p class="text-sm opacity-80 uppercase tracking-widest">&copy; 2026 • Forever & Always</p>
+        </div>
+    </footer>
+
+    <script>
+        function createHeart() {
+            const container = document.getElementById('hearts-container');
+            const heart = document.createElement('div');
+            heart.classList.add('heart-float');
+            heart.innerHTML = ['❤️', '💖', '💝', '✨', '🌸'][Math.floor(Math.random() * 5)];
+            const left = Math.random() * 100;
+            const size = Math.random() * 1.5 + 0.5;
+            const duration = Math.random() * 3 + 4;
+            heart.style.left = `${left}vw`;
+            heart.style.fontSize = `${size}rem`;
+            heart.style.animationDuration = `${duration}s`;
+            container.appendChild(heart);
+            setTimeout(() => heart.remove(), duration * 1000);
+        }
+        setInterval(createHeart, 400);
+
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() > 0.8) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = e.clientX + 'px';
+                sparkle.style.top = e.clientY + 'px';
+                const size = Math.random() * 8 + 2;
+                sparkle.style.width = size + 'px';
+                sparkle.style.height = size + 'px';
+                sparkle.style.background = `hsl(${Math.random() * 20 + 340}, 100%, 70%)`;
+                document.getElementById('sparkle-container').appendChild(sparkle);
+                setTimeout(() => {
+                    sparkle.style.transform = `translate(${(Math.random()-0.5)*100}px, ${(Math.random()-0.5)*100}px) scale(0)`;
+                    sparkle.style.opacity = '0';
+                    setTimeout(() => sparkle.remove(), 500);
+                }, 50);
+            }
+        });
+
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function openGift() {
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.9 }, 
+                colors: ['#ff4d6d', '#ff85a1', '#fbb1bd', '#ffffff']
+            });
+            document.getElementById('gift-closed').classList.add('hidden');
+            document.getElementById('gift-opened').classList.remove('hidden');
+            for(let i=0; i<30; i++) {
+                setTimeout(createHeart, i * 50);
+            }
+        }
+
+        function revealReason(el) {
+            const beforeState = document.getElementById('before-reveal');
+            const afterState = document.getElementById('after-reveal');
+            beforeState.classList.add('hidden');
+            afterState.classList.remove('hidden');
+            afterState.classList.add('flex', 'flex-col', 'items-center');
+            el.classList.add('bg-pink-100/80');
+            el.classList.remove('cursor-pointer', 'hover-lift');
+            el.onclick = null;
+            const rect = el.getBoundingClientRect();
+            confetti({
+                particleCount: 50,
+                spread: 60,
+                origin: { 
+                    x: (rect.left + rect.width / 2) / window.innerWidth, 
+                    y: (rect.top + rect.height / 2) / window.innerHeight
+                },
+                colors: ['#ff4d6d', '#ffffff']
+            });
+        }
+
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section > div').forEach(div => {
+            div.style.opacity = '0';
+            div.style.transform = 'translateY(30px)';
+            div.style.transition = 'all 1.2s cubic-bezier(0.22, 1, 0.36, 1)';
+            observer.observe(div);
+        });
+    </script>
+</body>
+</html>
